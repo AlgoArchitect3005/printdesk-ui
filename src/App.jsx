@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import LoginPage from "./pages/LoginPage";
+import Dashboard from "./pages/Dashboard";
 
 // ─── Protected Route wrapper ───────────────────────────────────────────────
 // isLoggedIn nahi hai → /login pe redirect
@@ -17,8 +18,8 @@ function AdminRoute({ children }) {
   return children;
 }
 
-// ─── Placeholder pages (baad mein replace karna) ──────────────────────────
-function Dashboard() { return <h2 style={{padding:32}}>Dashboard — Coming soon</h2>; }
+// // ─── Placeholder pages (baad mein replace karna) ──────────────────────────
+// function Dashboard() { return <h2 style={{padding:32}}>Dashboard — Coming soon</h2>; }
 
 // ─── App with Routes ───────────────────────────────────────────────────────
 function AppRoutes() {
