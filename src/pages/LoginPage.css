@@ -1,152 +1,145 @@
-/* ===== LoginPage.css ===== */
-
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@500&display=swap');
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/* ===== LoginPage.css — Glassmorphism Dark Theme ===== */
+@import '../variables.css';
 
 .login-root {
   min-height: 100vh;
-  background: #f4f3ef;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'DM Sans', sans-serif;
+  background: var(--bg-page);
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font-body);
+}
 
-  /* Subtle grid texture */
-  background-image:
-    linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
-  background-size: 32px 32px;
+/* Ambient background */
+.login-root::before {
+  content: '';
+  position: fixed;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(99,102,241,0.2) 0%, transparent 65%);
+  top: -150px; left: -150px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.login-root::after {
+  content: '';
+  position: fixed;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(236,72,153,0.15) 0%, transparent 65%);
+  bottom: -100px; right: -100px;
+  border-radius: 50%;
+  pointer-events: none;
 }
 
 .login-card {
-  background: #ffffff;
-  border: 1px solid #e0ddd6;
-  border-radius: 12px;
-  padding: 48px 40px;
+  position: relative;
+  z-index: 1;
   width: 100%;
-  max-width: 400px;
-  box-shadow:
-    0 2px 8px rgba(0,0,0,0.06),
-    0 0 0 1px rgba(0,0,0,0.02);
-  animation: cardIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+  max-width: 420px;
+  padding: 48px 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+  animation: scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
-@keyframes cardIn {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.93) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-/* Brand section */
+/* Brand */
 .login-brand {
   text-align: center;
   margin-bottom: 36px;
 }
-
 .brand-icon {
-  font-size: 2.4rem;
-  display: block;
-  margin-bottom: 12px;
-}
-
-.brand-name {
-  font-family: 'DM Mono', monospace;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px; height: 56px;
+  background: linear-gradient(135deg, #6366f1, #ec4899);
+  border-radius: 16px;
   font-size: 1.6rem;
+  margin-bottom: 16px;
+  box-shadow: 0 8px 24px rgba(99,102,241,0.4);
+}
+.brand-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.5rem;
   font-weight: 500;
-  color: #1a1a1a;
+  color: rgba(255,255,255,0.95);
   letter-spacing: -0.5px;
 }
-
 .brand-sub {
-  font-size: 0.82rem;
-  color: #888;
-  margin-top: 4px;
-  letter-spacing: 0.3px;
-}
-
-/* Form */
-.login-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.field-group {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.field-group label {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #444;
-  letter-spacing: 0.4px;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.35);
+  margin-top: 6px;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
 }
 
+/* Form */
+.login-form { display: flex; flex-direction: column; gap: 20px; }
+
+.field-group { display: flex; flex-direction: column; gap: 7px; }
+.field-group label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: rgba(255,255,255,0.45);
+}
 .field-group input {
-  padding: 10px 14px;
-  border: 1.5px solid #e0ddd6;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  font-family: 'DM Sans', sans-serif;
-  color: #1a1a1a;
-  background: #fafaf8;
-  transition: border-color 0.18s, box-shadow 0.18s;
+  padding: 11px 16px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 0.93rem;
+  color: rgba(255,255,255,0.9);
   outline: none;
+  transition: all 0.2s ease;
 }
-
+.field-group input::placeholder { color: rgba(255,255,255,0.2); }
 .field-group input:focus {
-  border-color: #1a1a1a;
-  background: #fff;
-  box-shadow: 0 0 0 3px rgba(26,26,26,0.07);
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(99,102,241,0.6);
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
 }
 
-.field-group input::placeholder {
-  color: #bbb;
-}
-
-/* Error */
 .login-error {
-  font-size: 0.84rem;
-  color: #c0392b;
-  background: #fdf0ee;
-  border: 1px solid #f5c6c0;
-  border-radius: 6px;
-  padding: 8px 12px;
+  padding: 10px 14px;
+  background: rgba(248,113,113,0.1);
+  border: 1px solid rgba(248,113,113,0.3);
+  border-radius: 8px;
+  color: #fca5a5;
+  font-size: 0.83rem;
   text-align: center;
 }
 
-/* Button */
 .login-btn {
   margin-top: 4px;
-  padding: 12px;
-  background: #1a1a1a;
-  color: #fff;
+  padding: 13px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899);
+  background-size: 200% 200%;
+  color: white;
   border: none;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  font-family: 'DM Sans', sans-serif;
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 0.93rem;
   font-weight: 600;
   cursor: pointer;
-  letter-spacing: 0.2px;
-  transition: background 0.18s, transform 0.1s;
+  box-shadow: 0 4px 20px rgba(99,102,241,0.4);
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-
 .login-btn:hover:not(:disabled) {
-  background: #333;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(99,102,241,0.5);
 }
-
-.login-btn:active:not(:disabled) {
-  transform: scale(0.98);
-}
-
-.login-btn:disabled {
-  background: #aaa;
-  cursor: not-allowed;
-}
+.login-btn:active:not(:disabled) { transform: scale(0.97); }
+.login-btn:disabled { opacity: 0.5; cursor: not-allowed; }
