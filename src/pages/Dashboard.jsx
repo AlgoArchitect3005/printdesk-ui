@@ -36,7 +36,7 @@ export default function Dashboard() {
           const stockRes = await api.get("/inventory/low-stock");
           setLowStock(stockRes.data);
         }
-      } catch { setError("Data load nahi hua. Backend check karo."); }
+      } catch { setError("Data load nahi hua. Backend check karo."); }      //-------------->
       finally  { setLoading(false); }
     }
     fetchData();
